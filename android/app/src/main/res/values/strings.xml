@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">My Calendar</string>
+    <string name="settings_page">Settings</string>
+</resources>
