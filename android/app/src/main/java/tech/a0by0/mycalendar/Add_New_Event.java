@@ -103,9 +103,6 @@ public class Add_New_Event extends SimpleActivity {
         else{
             events = this.openOrCreateDatabase("events",MODE_PRIVATE,null);
 
-    //        events.execSQL("INSERT INTO UserEvents (Date, StartingTime, StartHour, StartMinute, EndingTime, EndHour, EndMinute, Description) VALUES ('"
-    //                + date + "','" + StartingTime + "','" + shour + "','"+ sminute + "','"  + EndingTime + "','" + ehour + "','"+ eminute + "','" + EventDescription + "');");
-
             ContentValues values = new ContentValues();
 
             values.put("Date", date);
@@ -143,29 +140,29 @@ public class Add_New_Event extends SimpleActivity {
 
                 remoteViews = new RemoteViews(getPackageName(),R.layout.notification);
 
+                // To avoid too much text from the notification description
+                if (EventDescription.length() > 75)
+                    EventDescription = EventDescription.substring(0, 75);
+                remoteViews.setTextViewText(R.id.description,EventDescription);
                 remoteViews.setImageViewResource(R.id.notification_icon,R.drawable.ic_event_available_black_24dp);
                 remoteViews.setTextViewText(R.id.from,"From-");
                 remoteViews.setTextViewText(R.id.to,"To-");
                 remoteViews.setTextViewText(R.id.date,date);
-                remoteViews.setTextViewText(R.id.description,EventDescription);
                 remoteViews.setTextViewText(R.id.starting_time,StartingTime);
                 remoteViews.setTextViewText(R.id.ending_time,EndingTime);
 
                 Notification.Builder builder = new Notification.Builder(this);
-                //    builder.setContentTitle("Event Notification!");
-                //    builder.setContentText(EventDescription+"  "+StartingTime);
                 builder.setSmallIcon(R.drawable.ic_event_available_black_24dp);
                 builder.setContent(remoteViews);
                 Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                 builder.setSound(alarmSound);
-             //   builder.setVibrate(new long[] {1000, 1000, 1000, 1000, 1000});
 
                 Notification notification = builder.build();
 
                 Intent notificationIntent = new Intent(this, NotificationPublisher.class);
                 notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, (int)ID);
-                //     Toast.makeText(getApplicationContext(), Long.toString(cal.getTimeInMillis())+"  "+Long.toString(System.currentTimeMillis()),Toast.LENGTH_LONG).show();
                 notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(this, (int)ID, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                 long futureInMillis = cal.getTimeInMillis();

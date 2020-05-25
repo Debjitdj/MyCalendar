@@ -92,7 +92,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="70dp">
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="25sp"
+            android:layout_marginRight="25sp">
 
             <TextView
                 android:id="@+id/Edit_Event"
@@ -121,22 +123,22 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/editevent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginRight="25dp"
-                android:onClick="eventedit"
-                android:text="Edit Event" />
-
-            <Button
                 android:id="@+id/cancel_editing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="25dp"
+                android:layout_marginRight="30dp"
                 android:onClick="back_from_edit_event"
                 android:text="Cancel" />
+
+            <Button
+                android:id="@+id/editevent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:onClick="eventedit"
+                android:text="Edit Event" />
 
         </LinearLayout>
 
