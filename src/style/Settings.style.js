@@ -4,6 +4,13 @@ export default StyleSheet.create({
   container: {
     backgroundColor: '#303F9F'
   },
+  spinner: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: 'white',
+    marginTop: 3,
+    paddingTop: 20,
+  },
   content: {
     backgroundColor: 'white',
     marginTop: 3,
